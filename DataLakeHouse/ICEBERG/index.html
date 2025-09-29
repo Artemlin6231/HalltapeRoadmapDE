@@ -954,8 +954,59 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Примеры работы с таблицами(отличные от обычного SQL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Примеры работы с таблицами(отличные от обычного SQL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание таблицы
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-travel-snapshot-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time travel (по snapshot-id)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-travel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time travel (по времени)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Компактизация файлов
+    </span>
+  </a>
   
 </li>
       
@@ -1149,6 +1200,31 @@
 </tr>
 </tbody>
 </table>
+<h2 id="sql">Примеры работы с таблицами(отличные от обычного SQL)</h2>
+<h3 id="_7">Создание таблицы</h3>
+<p>```python
+spark.sql("""
+CREATE TABLE my_catalog.db.orders (
+  order_id BIGINT,
+  customer_id BIGINT,
+  amount DECIMAL(10,2),
+  created_at TIMESTAMP
+)
+USING iceberg
+PARTITIONED BY (days(created_at))
+""")</p>
+<h1 id="time-travel-snapshot-id">Time travel (по snapshot-id)</h1>
+<p>spark.sql("""
+SELECT * FROM my_catalog.db.orders VERSION AS OF 918273645
+""").show()</p>
+<h1 id="time-travel">Time travel (по времени)</h1>
+<p>spark.sql("""
+SELECT * FROM my_catalog.db.orders TIMESTAMP AS OF '2025-09-28 14:00:00'
+""").show()</p>
+<h1 id="_8">Компактизация файлов</h1>
+<p>spark.sql("""
+CALL my_catalog.system.rewrite_data_files('db.orders')
+""")</p>
 
 
 
