@@ -961,25 +961,28 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Примеры работы с таблицами(отличные от обычного SQL)">
-      <ul class="md-nav__list">
+</li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spark-iceberg" class="md-nav__link">
+    <span class="md-ellipsis">
+      запуск spark-сессии с iceberg
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       Создание таблицы
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1005,6 +1008,24 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       Компактизация файлов
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Очистка старых снапшотов
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Удаление delete-файлов
     </span>
   </a>
   
@@ -1201,9 +1222,19 @@
 </tbody>
 </table>
 <h2 id="sql">Примеры работы с таблицами(отличные от обычного SQL)</h2>
-<h3 id="_7">Создание таблицы</h3>
-<p>```python
-spark.sql("""
+<p>```python</p>
+<h1 id="spark-iceberg">запуск spark-сессии с iceberg</h1>
+<p>from pyspark.sql import SparkSession</p>
+<p>spark = (
+    SparkSession.builder
+    .appName("IcebergExample")
+    .config("spark.sql.catalog.my_catalog", "org.apache.iceberg.spark.SparkCatalog")
+    .config("spark.sql.catalog.my_catalog.type", "hive")
+    .config("spark.sql.catalog.my_catalog.uri", "thrift://localhost:9083")
+    .getOrCreate()
+)</p>
+<h1 id="_7">Создание таблицы</h1>
+<p>spark.sql("""
 CREATE TABLE my_catalog.db.orders (
   order_id BIGINT,
   customer_id BIGINT,
@@ -1224,6 +1255,15 @@ SELECT * FROM my_catalog.db.orders TIMESTAMP AS OF '2025-09-28 14:00:00'
 <h1 id="_8">Компактизация файлов</h1>
 <p>spark.sql("""
 CALL my_catalog.system.rewrite_data_files('db.orders')
+""")</p>
+<h1 id="_9">Очистка старых снапшотов</h1>
+<p>spark.sql("""
+CALL my_catalog.system.expire_snapshots('db.orders')
+  WHERE committed_at &lt; TIMESTAMP '2025-09-01 00:00:00'
+""")</p>
+<h1 id="delete-">Удаление delete-файлов</h1>
+<p>spark.sql("""
+CALL my_catalog.system.remove_orphan_files('db.orders')
 """)</p>
 
 
