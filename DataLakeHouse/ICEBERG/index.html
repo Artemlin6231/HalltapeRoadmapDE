@@ -801,6 +801,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Немного об этой главе
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apache-iceberg" class="md-nav__link">
     <span class="md-ellipsis">
       Apache Iceberg
@@ -811,7 +820,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       Введение
     </span>
@@ -829,7 +838,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       Ключевые преимущества
     </span>
@@ -880,7 +889,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       Ключевые особенности архитектуры
     </span>
@@ -899,7 +908,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       Типы файлов удаления
     </span>
@@ -908,7 +917,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       Стратегии записи
     </span>
@@ -978,7 +987,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       Создание таблицы
     </span>
@@ -1005,7 +1014,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       Компактизация файлов
     </span>
@@ -1014,7 +1023,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       Очистка старых снапшотов
     </span>
@@ -1057,8 +1066,11 @@
 <p><a href="https://t.me/dataengineerlab">Канал Data Engineer Lab</a></p>
 <p>Хочешь перейти в дата-инженерию, но не знаешь с чего начать? Пиши -  составим резюме, продумаем твое развитие <a href="https://t.me/ampodvalniy">https://t.me/ampodvalniy</a></p>
 <p>Хочешь улучшить текущий раздел, внести недостающее или поправить формулировку? Предлагай PR и тегай <a href="https://github.com/Artemlin6231">@Artemlin6231</a></p>
+<h2 id="_2">Немного об этой главе</h2>
+<p>Многие компания начинают сейчас переходить на Iceberg и концепцию Lakehouse. Так что знакомство с данным форматом данных позволит держать руку на пульсе)</p>
+<p>Приятного изучения)</p>
 <h1 id="apache-iceberg">Apache Iceberg</h1>
-<h2 id="_2">Введение</h2>
+<h2 id="_3">Введение</h2>
 <p>Данные стали ключевым активом для организаций: они необходимы для анализа
 тенденций, построения прогнозов и поддержки принятия решений. Рост объёмов
 и скорости генерации данных потребовал появления новых архитектур
@@ -1079,7 +1091,7 @@
 - Поддерживает эволюцию схем и секционирования без миграции данных.
 - Делает возможной эффективную SQL-аналитику прямо в Data Lake.</p>
 <hr />
-<h2 id="_3">Ключевые преимущества</h2>
+<h2 id="_4">Ключевые преимущества</h2>
 <ul>
 <li><strong>Гибкость</strong>: хранение любых форматов данных (Parquet, ORC, Avro).</li>
 <li><strong>Транзакции</strong>: безопасные вставки, обновления, удаления.</li>
@@ -1134,7 +1146,7 @@
 (Spark, Flink, Trino и др.).</li>
 </ul>
 <hr />
-<h2 id="_4">Ключевые особенности архитектуры</h2>
+<h2 id="_5">Ключевые особенности архитектуры</h2>
 <ul>
 <li><strong>ACID-транзакции</strong> без централизованной СУБД.  </li>
 <li><strong>Эволюция схемы и секционирования</strong> без миграции данных.  </li>
@@ -1147,7 +1159,7 @@
 <strong>файлы удаления (delete files)</strong>. Они позволяют эффективно управлять изменениями,
 не переписывая сразу все данные.</p>
 <hr />
-<h3 id="_5">Типы файлов удаления</h3>
+<h3 id="_6">Типы файлов удаления</h3>
 <ol>
 <li><strong>Position Deletes</strong></li>
 <li>Содержат ссылки на конкретные строки в файле данных по смещению (row position).</li>
@@ -1161,7 +1173,7 @@
 <li>Удобны для массовых удалений или обновлений по ключу.</li>
 </ol>
 <hr />
-<h3 id="_6">Стратегии записи</h3>
+<h3 id="_7">Стратегии записи</h3>
 <h4 id="1-copy-on-write-cow">1. Copy-on-Write (COW)</h4>
 <ul>
 <li>При обновлениях или удалениях Iceberg <strong>переписывает целый файл данных</strong>,
@@ -1233,7 +1245,7 @@
     .config("spark.sql.catalog.my_catalog.uri", "thrift://localhost:9083")
     .getOrCreate()
 )</p>
-<h1 id="_7">Создание таблицы</h1>
+<h1 id="_8">Создание таблицы</h1>
 <p>spark.sql("""
 CREATE TABLE my_catalog.db.orders (
   order_id BIGINT,
@@ -1252,11 +1264,11 @@ SELECT * FROM my_catalog.db.orders VERSION AS OF 918273645
 <p>spark.sql("""
 SELECT * FROM my_catalog.db.orders TIMESTAMP AS OF '2025-09-28 14:00:00'
 """).show()</p>
-<h1 id="_8">Компактизация файлов</h1>
+<h1 id="_9">Компактизация файлов</h1>
 <p>spark.sql("""
 CALL my_catalog.system.rewrite_data_files('db.orders')
 """)</p>
-<h1 id="_9">Очистка старых снапшотов</h1>
+<h1 id="_10">Очистка старых снапшотов</h1>
 <p>spark.sql("""
 CALL my_catalog.system.expire_snapshots('db.orders')
   WHERE committed_at &lt; TIMESTAMP '2025-09-01 00:00:00'
